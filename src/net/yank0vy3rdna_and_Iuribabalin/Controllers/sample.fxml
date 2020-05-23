@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="192.0" prefWidth="254.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.yank0vy3rdna_and_Iuribabalin.Controllers.Controller">
+    <children>
+        <Button fx:id="reg_button" layoutX="14.0" layoutY="149.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Registration" />
+        <Button fx:id="log_button" layoutX="132.0" layoutY="149.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Login" />
+        <Label fx:id="lable1" layoutX="14.0" layoutY="22.0" text="Login:" />
+        <PasswordField fx:id="pass_id" layoutX="8.0" layoutY="101.0" prefHeight="26.0" prefWidth="225.0" />
+        <TextField fx:id="log_id" layoutX="8.0" layoutY="45.0" prefHeight="26.0" prefWidth="225.0" />
+        <Label fx:id="lable2" layoutX="14.0" layoutY="81.0" text="Password:" />
+    </children>
+</AnchorPane>
