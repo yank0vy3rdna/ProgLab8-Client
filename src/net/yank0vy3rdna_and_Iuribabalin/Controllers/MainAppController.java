@@ -45,7 +45,7 @@ public class MainAppController {
 
     @FXML
     void initialize() {
-        info.setText("      Добрый день: " + Main.login);
+        info.setText("      Добрый день," + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
                 "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
         Command.setItems(langs);
@@ -84,6 +84,9 @@ public class MainAppController {
         });
 
         button_do.setOnAction(event->{
+            switch (Command.getValue()){
+
+            }
             System.out.println(Command.getValue());
         });
 
