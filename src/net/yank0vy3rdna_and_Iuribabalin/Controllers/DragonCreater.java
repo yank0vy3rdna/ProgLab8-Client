@@ -3,10 +3,7 @@ package net.yank0vy3rdna_and_Iuribabalin.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import net.yank0vy3rdna_and_Iuribabalin.*;
 
 import java.io.DataInputStream;
@@ -88,7 +85,7 @@ public class DragonCreater {
         dragonCharacter.setItems(langs1);
         dragonCharacter.setValue("CUNNING");
 
-        Create_Drag.setOnAction(event->{
+        Create_Drag.setOnAction(event -> {
             String date = String.valueOf(birthday_killer.getValue());
 
             String[] date2 = date.split("-");
@@ -104,34 +101,33 @@ public class DragonCreater {
             try {
                 Date birthday = format.parse(date);
 
-            Main.cord = new Coordinates(Double.parseDouble(locationX.getText()), Float.parseFloat(locationY.getText()));
+                Main.cord = new Coordinates(Double.parseDouble(locationX.getText()), Float.parseFloat(locationY.getText()));
 
-            Main.loc = new Location(Double.parseDouble(killer_loc_x.getText()), Float.parseFloat(killer_loc_y.getText()), Long.parseLong(killer_loc_z.getText()),location_name.getText());
+                Main.loc = new Location(Double.parseDouble(killer_loc_x.getText()), Float.parseFloat(killer_loc_y.getText()), Long.parseLong(killer_loc_z.getText()), location_name.getText());
 
-            Main.killer = new Person(killerName.getText(), birthday, Long.parseLong(height.getText()), Long.parseLong(killer_weight.getText()), Main.loc);
+                Main.killer = new Person(killerName.getText(), birthday, Long.parseLong(height.getText()), Long.parseLong(killer_weight.getText()), Main.loc);
 
-            //Main.dragon = new Dragon(name.getText(), Main.cord, Integer.parseInt(age.toString()), DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()),Main.killer,Main.owner_id);
+                //Main.dragon = new Dragon(name.getText(), Main.cord, Integer.parseInt(age.toString()), DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()),Main.killer,Main.owner_id);
 //String name, Coordinates coordinates,Long age, long weight, DragonType type, DragonCharacter character, Person killer, long owner_id
-            long a = Long.parseLong(age.getText());
-            long b = Long.parseLong(weight.getText());
-            Main.dragon = new Dragon(name.getText(), Main.cord, a , b, DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()),Main.killer,Main.owner_id);
+                long a = Long.parseLong(age.getText());
+                long b = Long.parseLong(weight.getText());
+                Main.dragon = new Dragon(name.getText(), Main.cord, a, b, DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()), Main.killer, Main.owner_id);
 
-            OutputCommand out = new OutputCommand();
-            out.setCommand("add");
-            out.setLog(Main.login);
-            out.setPass(Main.pass);
-            out.setOwner_id(Main.owner_id);
-            out.setSessionID(Main.sessionID);
-            out.setDragon(Main.dragon);
+                OutputCommand out = new OutputCommand();
+                out.setCommand("add");
+                out.setLog(Main.login);
+                out.setPass(Main.pass);
+                out.setOwner_id(Main.owner_id);
+                out.setSessionID(Main.sessionID);
+                out.setDragon(Main.dragon);
 
-            Socket socket;
-            DataOutputStream oos;
-            DataInputStream ois;
-            byte[] outBytes;
-            String asw = "";
-            CommandSerializer serialCommand = new CommandSerializer();
+                Socket socket;
+                DataOutputStream oos;
+                DataInputStream ois;
+                byte[] outBytes;
+                String asw = "";
+                CommandSerializer serialCommand = new CommandSerializer();
 
-            try {
                 socket = new Socket("127.0.0.1", 2323);
                 outBytes = serialCommand.serializable(out);
 
@@ -143,31 +139,38 @@ public class DragonCreater {
 
                 byte[] bytes = toByte(ois.readUTF().split(", "));
                 asw = new String(bytes, StandardCharsets.UTF_8);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            System.out.println("\n" + " Создан\n" + asw);
-            Create_Drag.getScene().getWindow().hide();
-            } catch (ParseException e) {
-                e.printStackTrace();
+                Create_Drag.getScene().getWindow().hide();
+            } catch (ParseException | NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Auth error");
+                alert.setHeaderText("Auth error");
+                alert.setContentText("Parsing error");
+                alert.showAndWait().ifPresent(rs -> {});
+            } catch (IOException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Auth error");
+                alert.setHeaderText("Auth error");
+                alert.setContentText("Sending error: "+e.getLocalizedMessage());
+                alert.showAndWait().ifPresent(rs -> {});
             }
         });
     }
-    private byte[] toByte(String[] str){
+
+    private byte[] toByte(String[] str) {
         byte[] bytes = new byte[str.length];
         String s = "-";
 
-        if(str[0].split("-").length == 2){
+        if (str[0].split("-").length == 2) {
             s += str[0].split("-")[1];
             str[0] = s;
-        }else{
+        } else {
             str[0] = str[0].replaceAll("[^0-9]", "");
         }
 
         str[str.length - 1] = str[str.length - 1].split("]")[0];
 
-        for(int i = 0;i< str.length;i++){
+        for (int i = 0; i < str.length; i++) {
             bytes[i] = Byte.parseByte(str[i]);
         }
         return bytes;

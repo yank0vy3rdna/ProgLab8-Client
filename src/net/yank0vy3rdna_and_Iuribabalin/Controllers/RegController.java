@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import net.yank0vy3rdna_and_Iuribabalin.Client;
 import net.yank0vy3rdna_and_Iuribabalin.OutputCommand;
@@ -47,20 +44,18 @@ public class RegController {
                 if(client.reg(log_id.getText(), pass_id.getText(),new OutputCommand())){
                     reg_button.getScene().getWindow().hide();
                 }else{
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("error.fxml"));
-
-                    try {
-                        loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Parent root = loader.getRoot();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Reg error");
+                    alert.setContentText("Reg failed");
+                    alert.showAndWait().ifPresent(rs -> {});
                 }
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Auth error");
+                alert.setHeaderText("Auth error");
+                alert.setContentText("Auth problem: bad text");
+                alert.showAndWait().ifPresent(rs -> {});
             }
 
         });

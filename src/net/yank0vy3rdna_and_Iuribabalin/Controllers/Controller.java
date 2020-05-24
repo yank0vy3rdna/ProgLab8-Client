@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import net.yank0vy3rdna_and_Iuribabalin.Client;
 import net.yank0vy3rdna_and_Iuribabalin.OutputCommand;
@@ -60,22 +58,25 @@ public class Controller {
                        stage.setScene(new Scene(root));
                        stage.showAndWait();
                    }else{
-                       loader.setLocation(getClass().getResource("error.fxml"));
-
-                       try {
-                           loader.load();
-                       } catch (IOException e) {
-                           e.printStackTrace();
-                       }
-
-                       Parent root = loader.getRoot();
-                       Stage stage = new Stage();
-                       stage.setScene(new Scene(root));
-                       stage.showAndWait();
+                       Alert alert = new Alert(Alert.AlertType.ERROR);
+                       alert.setTitle("Error");
+                       alert.setHeaderText("Auth error");
+                       alert.setContentText("Auth failed");
+                       alert.showAndWait().ifPresent(rs -> {});
                    }
                } catch (NoSuchAlgorithmException | IOException e) {
-                   System.out.println("Ошибка автоизации");
+                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert.setTitle("Auth error");
+                   alert.setHeaderText("Auth error");
+                   alert.setContentText("Auth problem: "+e.getLocalizedMessage());
+                   alert.showAndWait().ifPresent(rs -> {});
                }
+           }else {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("Auth error");
+               alert.setHeaderText("Auth error");
+               alert.setContentText("Auth problem: bad text");
+               alert.showAndWait().ifPresent(rs -> {});
            }
        });
 
