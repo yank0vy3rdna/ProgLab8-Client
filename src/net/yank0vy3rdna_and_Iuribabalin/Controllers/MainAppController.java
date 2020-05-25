@@ -18,6 +18,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.concurrent.Flow;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainAppController {
     public ObservableList<DragonTable> dragonData = FXCollections.observableArrayList();
@@ -100,19 +102,25 @@ public class MainAppController {
         }
         return bytes;
     }
-
-    @FXML
-    void initialize() {
-
+    void update_table_func(){
         dragonData.clear();
         table_dragon.getItems().clear();
         getDragon();
+    }
+    @FXML
+    void initialize() {
+        Main.mainAppController = this;
+        TimerTask task = new TimerTask()
+        {
+            public void run()
+            {
+                Main.mainAppController.update_table_func();
+            }
 
-        update_table.setOnAction(event->{
-            dragonData.clear();
-            table_dragon.getItems().clear();
-            getDragon();
-        });
+        };
+        Timer timer = new Timer();
+        timer.schedule(task, 0L, 1000L);
+        update_table.setOnAction(x -> update_table_func());
 
         info.setText("      Добрый день," + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
@@ -131,7 +139,8 @@ public class MainAppController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    DragonUpdateController controller = loader.getController();
+                    controller.dragon = (Dragon) Main.collectionWorker.get_by_id( table_dragon.getSelectionModel().getSelectedItem().getId());
                     Parent root = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
@@ -321,8 +330,10 @@ public class MainAppController {
 
             CollectionWorker collectionWorker = (CollectionWorker) (CollectionWorker) worker.readValue(dragonsJSON, CollectionWorker.class);
 
+            Main.collectionWorker = collectionWorker;
+
             for (StoredType el : collectionWorker.collection) {
-                dragonData.add(new DragonTable(el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
+                dragonData.add(new DragonTable(el.getId(), el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
                         el.getCharacter().toString(), el.getKiller().getName(), chekerNull(el.getKiller().getWeight().toString()),
                         chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
                         chekerNull(el.getKiller().getLocation().getName()),el.getOwner_id()));
@@ -332,20 +343,20 @@ public class MainAppController {
 
 
 
-            name_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("name"));
-            age_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("age"));
-            weight_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("weight"));
-            type_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("type"));
-            character_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("character"));
-            name_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killerName"));
-            weight_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_weight"));
-            height_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_height"));
-            birthday_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_birthday"));
-            location_name.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("location_name"));
+            name_drag.setCellValueFactory(new PropertyValueFactory<>("name"));
+            age_drag.setCellValueFactory(new PropertyValueFactory<>("age"));
+            weight_drag.setCellValueFactory(new PropertyValueFactory<>("weight"));
+            type_drag.setCellValueFactory(new PropertyValueFactory<>("type"));
+            character_drag.setCellValueFactory(new PropertyValueFactory<>("character"));
+            name_killer.setCellValueFactory(new PropertyValueFactory<>("killerName"));
+            weight_killer.setCellValueFactory(new PropertyValueFactory<>("killer_weight"));
+            height_killer.setCellValueFactory(new PropertyValueFactory<>("killer_height"));
+//            birthday_killer.setCellValueFactory(new PropertyValueFactory<>("killer_birthday"));
+            location_name.setCellValueFactory(new PropertyValueFactory<>("location_name"));
 
             table_dragon.setItems(dragonData);
 
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 

@@ -1,35 +1,27 @@
 package net.yank0vy3rdna_and_Iuribabalin;
 
-import com.google.gson.*;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import net.yank0vy3rdna_and_Iuribabalin.Controllers.MainAppController;
 
-import java.io.*;
-import java.lang.reflect.Type;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 
 public class Main extends Application {
-
+    public static MainAppController mainAppController;
     public static String login;
     public static byte[] pass;
     public static long sessionID;
     public static long owner_id;
     public static Dragon dragon;
+    public static CollectionWorker collectionWorker;
     public static Coordinates cord;
     public static Person killer;
     public static Location loc;

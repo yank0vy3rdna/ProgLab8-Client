@@ -137,7 +137,7 @@ public class DragonCreater {
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Dragon created");
                 alert.setHeaderText("Dragon created");
                 alert.setContentText("Dragon created");

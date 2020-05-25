@@ -12,11 +12,12 @@ public class DragonTable {
     private String killer_birthday;
     private String location_name;
     private long owner_id;
+    private long id;
 
 
-
-    public DragonTable(String name, String age, String weight, String type, String character, String killerName, String killer_weight, String killer_height, String killer_birthday, String location_name, Long owner_id) {
+    public DragonTable(long id, String name, String age, String weight, String type, String character, String killerName, String killer_weight, String killer_height, String killer_birthday, String location_name, Long owner_id) {
         this.name = name;
+        this.id = id;
         this.age = age;
         this.weight = weight;
         this.type = type;
@@ -27,6 +28,10 @@ public class DragonTable {
         this.killer_birthday = killer_birthday;
         this.location_name = location_name;
         this.owner_id = owner_id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public long getOwner_id() {

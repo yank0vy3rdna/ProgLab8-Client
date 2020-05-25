@@ -13,6 +13,13 @@ public class CollectionWorker{
         creationDate = new Date();
     }
 
-
+    public StoredType get_by_id(long id){
+        for (StoredType i : collection){
+            if(i.getId() == id){
+                return i;
+            }
+        }
+        return null;
+    }
 
 }
