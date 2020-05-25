@@ -120,7 +120,7 @@ public class MainAppController {
         Timer timer = new Timer();
         timer.schedule(task, 0L, 1000L);
 
-        info.setText("      Добрый день," + Main.login);
+        info.setText("      Добрый день, " + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
                 "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
         Command.setItems(langs);
@@ -131,14 +131,16 @@ public class MainAppController {
                 if(table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id){
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("DragonUpdate.fxml"));
+                    Main.dragon1 = (Dragon) Main.collectionWorker.get_by_id(table_dragon.getSelectionModel().getSelectedItem().getId());
+
 
                     try {
                         loader.load();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    DragonUpdateController controller = loader.getController();
-                    controller.dragon = (Dragon) Main.collectionWorker.get_by_id( table_dragon.getSelectionModel().getSelectedItem().getId());
+                    //DragonUpdateController controller = loader.getController();
+                    //controller.dragon = (Dragon) Main.collectionWorker.get_by_id(table_dragon.getSelectionModel().getSelectedItem().getId());
                     Parent root = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
@@ -170,6 +172,8 @@ public class MainAppController {
                 byte[] outBytes = (new CommandSerializer()).serializable(out);
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
+
+                timer.cancel();
 
                 out_button.getScene().getWindow().hide();
 

@@ -25,6 +25,7 @@ public class Main extends Application {
     public static Coordinates cord;
     public static Person killer;
     public static Location loc;
+    public static Dragon dragon1;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
