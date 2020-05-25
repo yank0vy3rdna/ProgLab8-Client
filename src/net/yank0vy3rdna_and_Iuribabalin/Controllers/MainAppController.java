@@ -147,8 +147,7 @@ public class MainAppController {
                     stage.showAndWait();
                 }
             }
-        });
-
+       });
 
         out_button.setOnAction(event -> {
             OutputCommand out = new OutputCommand();
@@ -197,7 +196,7 @@ public class MainAppController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
-
+        
         Add_dragon.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("DragonCreater.fxml"));
@@ -281,6 +280,20 @@ public class MainAppController {
                         InfoController.text = new String(bytes, StandardCharsets.UTF_8);
                         socket.close();
                         loader.setLocation(getClass().getResource("info.fxml"));
+                        break;
+                    case "Execute Script":
+                        loader.setLocation(getClass().getResource("ExecuteScript.fxml"));
+
+                        try {
+                            loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        Parent root = loader.getRoot();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.showAndWait();
                         break;
                 }
                 try {
