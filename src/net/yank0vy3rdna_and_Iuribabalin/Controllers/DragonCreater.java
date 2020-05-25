@@ -108,11 +108,7 @@ public class DragonCreater {
 
                 Main.killer = new Person(killerName.getText(), birthday, Long.parseLong(height.getText()), Long.parseLong(killer_weight.getText()), Main.loc);
 
-                //Main.dragon = new Dragon(name.getText(), Main.cord, Integer.parseInt(age.toString()), DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()),Main.killer,Main.owner_id);
-//String name, Coordinates coordinates,Long age, long weight, DragonType type, DragonCharacter character, Person killer, long owner_id
-                long a = Long.parseLong(age.getText());
-                long b = Long.parseLong(weight.getText());
-                Main.dragon = new Dragon(name.getText(), Main.cord, a, b, DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()), Main.killer, Main.owner_id);
+                Main.dragon = new Dragon(name.getText(), Main.cord, Long.parseLong(age.getText()), Long.parseLong(weight.getText()), DragonType.valueOf(dragonType.getValue()), DragonCharacter.valueOf(dragonCharacter.getValue()), Main.killer, Main.owner_id);
 
                 OutputCommand out = new OutputCommand();
                 out.setCommand("add");
