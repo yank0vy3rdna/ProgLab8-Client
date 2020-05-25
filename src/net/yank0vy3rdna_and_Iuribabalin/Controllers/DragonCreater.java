@@ -132,14 +132,15 @@ public class DragonCreater {
                 outBytes = serialCommand.serializable(out);
 
                 oos = new DataOutputStream(socket.getOutputStream());
-                ois = new DataInputStream(socket.getInputStream());
 
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
 
-                byte[] bytes = toByte(ois.readUTF().split(", "));
-                asw = new String(bytes, StandardCharsets.UTF_8);
-
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Dragon created");
+                alert.setHeaderText("Dragon created");
+                alert.setContentText("Dragon created");
+                alert.showAndWait().ifPresent(rs -> {});
                 Create_Drag.getScene().getWindow().hide();
             } catch (ParseException | NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -155,24 +156,5 @@ public class DragonCreater {
                 alert.showAndWait().ifPresent(rs -> {});
             }
         });
-    }
-
-    private byte[] toByte(String[] str) {
-        byte[] bytes = new byte[str.length];
-        String s = "-";
-
-        if (str[0].split("-").length == 2) {
-            s += str[0].split("-")[1];
-            str[0] = s;
-        } else {
-            str[0] = str[0].replaceAll("[^0-9]", "");
-        }
-
-        str[str.length - 1] = str[str.length - 1].split("]")[0];
-
-        for (int i = 0; i < str.length; i++) {
-            bytes[i] = Byte.parseByte(str[i]);
-        }
-        return bytes;
     }
 }
