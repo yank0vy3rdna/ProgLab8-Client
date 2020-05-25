@@ -2,6 +2,7 @@ package net.yank0vy3rdna_and_Iuribabalin.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import net.yank0vy3rdna_and_Iuribabalin.*;
 
 import java.io.*;
@@ -102,17 +104,15 @@ public class MainAppController {
         return bytes;
     }
 
-    void update_table_func(){
+    void update_table_func() {
         getDragons();
     }
 
     @FXML
     void initialize() {
         Main.mainAppController = this;
-        TimerTask task = new TimerTask()
-        {
-            public void run()
-            {
+        TimerTask task = new TimerTask() {
+            public void run() {
                 Main.mainAppController.update_table_func();
             }
 
@@ -125,10 +125,24 @@ public class MainAppController {
                 "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
         Command.setItems(langs);
         Command.setValue("Info");
-
-       table_dragon.setOnMouseClicked( event -> {
-            if( event.getClickCount() == 2 ) {
-                if(table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id){
+        anima.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("anime.fxml"));
+            try {
+                loader.load();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, Anime.WINDOW_X, Anime.WINDOW_Y));
+            stage.showAndWait();
+            Anime anime = loader.getController();
+            anime.onShow();
+        });
+        table_dragon.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                if (table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id) {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("DragonUpdate.fxml"));
 
@@ -138,14 +152,14 @@ public class MainAppController {
                         e.printStackTrace();
                     }
                     DragonUpdateController controller = loader.getController();
-                    controller.dragon = (Dragon) Main.collectionWorker.get_by_id( table_dragon.getSelectionModel().getSelectedItem().getId());
+                    controller.dragon = (Dragon) Main.collectionWorker.get_by_id(table_dragon.getSelectionModel().getSelectedItem().getId());
                     Parent root = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
             }
-       });
+        });
 
         out_button.setOnAction(event -> {
             OutputCommand out = new OutputCommand();
@@ -194,7 +208,7 @@ public class MainAppController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
-        
+
         Add_dragon.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("DragonCreater.fxml"));
@@ -339,7 +353,7 @@ public class MainAppController {
                 dragonData.add(new DragonTable(el.getId(), el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
                         el.getCharacter().toString(), el.getKiller().getName(), chekerNull(el.getKiller().getWeight().toString()),
                         chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
-                        chekerNull(el.getKiller().getLocation().getName()),el.getOwner_id()));
+                        chekerNull(el.getKiller().getLocation().getName()), el.getOwner_id()));
             }
 
             socket.close();
@@ -361,8 +375,8 @@ public class MainAppController {
         }
     }
 
-    String chekerNull(String str){
-        if(str != null)
+    String chekerNull(String str) {
+        if (str != null)
             return str;
         return "null";
     }

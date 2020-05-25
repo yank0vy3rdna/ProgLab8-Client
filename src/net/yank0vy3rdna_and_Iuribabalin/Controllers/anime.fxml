@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="net.yank0vy3rdna_and_Iuribabalin.Controllers.Anime"
+            prefHeight="400.0" prefWidth="600.0">
+<children>
+    <Canvas fx:id="canvas"></Canvas>
+</children>
+</AnchorPane>
