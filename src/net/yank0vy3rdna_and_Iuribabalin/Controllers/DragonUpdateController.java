@@ -80,6 +80,7 @@ public class DragonUpdateController {
 
     @FXML
     void initialize() {
+        System.out.println(dragon.getName());
         name.setText(dragon.getName());
         age.setText(dragon.getAge().toString());
         weight.setText(Long.toString(dragon.getWeight()));

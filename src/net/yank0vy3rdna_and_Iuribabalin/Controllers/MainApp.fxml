@@ -25,7 +25,7 @@
                               <Button fx:id="button_do" layoutX="727.0" layoutY="57.0" mnemonicParsing="false" text="Исполнить" />
                               <Button fx:id="help" layoutX="269.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Все комманды" />
                               <Button fx:id="out_button" layoutX="935.0" layoutY="134.0" mnemonicParsing="false" text="Выход" />
-                              <Button fx:id="update_table" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="Обновить таблицу" />
+                              <Button fx:id="anima" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="Анимация" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="1349.0">

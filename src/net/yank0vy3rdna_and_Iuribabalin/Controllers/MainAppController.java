@@ -17,7 +17,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.concurrent.Flow;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -81,7 +80,7 @@ public class MainAppController {
     private TableColumn<DragonTable, String> location_name;
 
     @FXML
-    private Button update_table;
+    private Button anima;
 
 
     static byte[] getBytes(String[] str) {
@@ -102,11 +101,11 @@ public class MainAppController {
         }
         return bytes;
     }
+
     void update_table_func(){
-        dragonData.clear();
-        table_dragon.getItems().clear();
-        getDragon();
+        getDragons();
     }
+
     @FXML
     void initialize() {
         Main.mainAppController = this;
@@ -120,7 +119,6 @@ public class MainAppController {
         };
         Timer timer = new Timer();
         timer.schedule(task, 0L, 1000L);
-        update_table.setOnAction(x -> update_table_func());
 
         info.setText("      Добрый день," + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
@@ -213,7 +211,7 @@ public class MainAppController {
             stage.showAndWait();
             dragonData.clear();
             table_dragon.getItems().clear();
-            getDragon();
+            getDragons();
         });
 
         button_do.setOnAction(event -> {
@@ -283,17 +281,6 @@ public class MainAppController {
                         break;
                     case "Execute Script":
                         loader.setLocation(getClass().getResource("ExecuteScript.fxml"));
-
-                        try {
-                            loader.load();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        Parent root = loader.getRoot();
-                        Stage stage = new Stage();
-                        stage.setScene(new Scene(root));
-                        stage.showAndWait();
                         break;
                 }
                 try {
@@ -312,7 +299,7 @@ public class MainAppController {
 
     }
 
-    private void getDragon() {
+    private void getDragons() {
         OutputCommand out = new OutputCommand();
         try {
             Socket socket = new Socket("127.0.0.1", 2323);
@@ -345,6 +332,9 @@ public class MainAppController {
 
             Main.collectionWorker = collectionWorker;
 
+            dragonData.clear();
+            table_dragon.getItems().clear();
+
             for (StoredType el : collectionWorker.collection) {
                 dragonData.add(new DragonTable(el.getId(), el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
                         el.getCharacter().toString(), el.getKiller().getName(), chekerNull(el.getKiller().getWeight().toString()),
@@ -353,8 +343,6 @@ public class MainAppController {
             }
 
             socket.close();
-
-
 
             name_drag.setCellValueFactory(new PropertyValueFactory<>("name"));
             age_drag.setCellValueFactory(new PropertyValueFactory<>("age"));
