@@ -140,6 +140,7 @@ public class MainAppController {
             Anime anime = loader.getController();
             anime.onShow();
         });
+
         table_dragon.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 if (table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id) {
@@ -156,6 +157,12 @@ public class MainAppController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Auth error");
+                    alert.setHeaderText("Auth error");
+                    alert.setContentText("Access error");
+                    alert.showAndWait().ifPresent(rs -> {});
                 }
             }
         });
@@ -183,6 +190,8 @@ public class MainAppController {
                 byte[] outBytes = (new CommandSerializer()).serializable(out);
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
+
+                timer.cancel();
 
                 out_button.getScene().getWindow().hide();
 
