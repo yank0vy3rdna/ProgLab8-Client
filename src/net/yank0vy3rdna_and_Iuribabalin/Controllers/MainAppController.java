@@ -143,6 +143,7 @@ public class MainAppController {
         table_dragon.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 if (table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id) {
+                    Main.dragon1 = (Dragon) Main.collectionWorker.get_by_id(table_dragon.getSelectionModel().getSelectedItem().getId());
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("DragonUpdate.fxml"));
 
@@ -151,8 +152,6 @@ public class MainAppController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    DragonUpdateController controller = loader.getController();
-                    controller.dragon = (Dragon) Main.collectionWorker.get_by_id(table_dragon.getSelectionModel().getSelectedItem().getId());
                     Parent root = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
