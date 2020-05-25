@@ -33,15 +33,14 @@
                               <TableView fx:id="table_dragon" prefHeight="566.0" prefWidth="1353.0">
                                 <columns>
                                     <TableColumn fx:id="name_drag" prefWidth="200.0" text="Name" />
-                                    <TableColumn fx:id="age_drag" prefWidth="100" text="Age" />
+                                    <TableColumn fx:id="age_drag" prefWidth="120" text="Age" />
                                     <TableColumn fx:id="weight_drag" prefWidth="100" text="Weight" />
-                                    <TableColumn fx:id="type_drag" prefWidth="100" text="Type" />
-                                    <TableColumn fx:id="character_drag" prefWidth="100" text="character" />
+                                    <TableColumn fx:id="type_drag" prefWidth="150" text="Type" />
+                                    <TableColumn fx:id="character_drag" prefWidth="150" text="character" />
                                     <TableColumn fx:id="name_killer" prefWidth="200.0" text="Killer name" />
-                                    <TableColumn fx:id="weight_killer" prefWidth="110.0" text="Killer weight" />
-                                    <TableColumn fx:id="height_killer" prefWidth="110.0" text="Killer height" />
-                                    <TableColumn fx:id="birthday_killer" prefWidth="150.0" text="Killer birthday" />
-                                    <TableColumn fx:id="location_name" prefWidth="180.0" text="Location name" />
+                                    <TableColumn fx:id="weight_killer" prefWidth="120.0" text="Killer weight" />
+                                    <TableColumn fx:id="height_killer" prefWidth="115.0" text="Killer height" />
+                                    <TableColumn fx:id="location_name" prefWidth="200.0" text="Location name" />
                                 </columns>
                               </TableView>
                            </children>
