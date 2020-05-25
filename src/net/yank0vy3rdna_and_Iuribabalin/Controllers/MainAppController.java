@@ -6,24 +6,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import net.yank0vy3rdna_and_Iuribabalin.CommandSerializer;
-import net.yank0vy3rdna_and_Iuribabalin.Main;
-import net.yank0vy3rdna_and_Iuribabalin.OutputCommand;
+import net.yank0vy3rdna_and_Iuribabalin.*;
 
 import java.io.*;
-import java.net.ConnectException;
 import java.net.Socket;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.concurrent.Flow;
 
 public class MainAppController {
+    public ObservableList<DragonTable> dragonData = FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
@@ -47,7 +44,43 @@ public class MainAppController {
     private Button help;
 
     @FXML
-    private TableView<?> table_dragon;
+    private Button out_button;
+
+    @FXML
+    private TableView<DragonTable> table_dragon;
+    @FXML
+    private TableColumn<DragonTable, String> name_drag;
+
+    @FXML
+    private TableColumn<DragonTable, String> age_drag;
+
+    @FXML
+    private TableColumn<DragonTable, String> weight_drag;
+
+    @FXML
+    private TableColumn<DragonTable, String> type_drag;
+
+    @FXML
+    private TableColumn<DragonTable, String> character_drag;
+
+    @FXML
+    private TableColumn<DragonTable, String> name_killer;
+
+    @FXML
+    private TableColumn<DragonTable, String> weight_killer;
+
+    @FXML
+    private TableColumn<DragonTable, String> height_killer;
+
+    @FXML
+    private TableColumn<DragonTable, String> birthday_killer;
+
+    @FXML
+    private TableColumn<DragonTable, String> location_name;
+
+    @FXML
+    private Button update_table;
+
 
     static byte[] getBytes(String[] str) {
         byte[] bytes = new byte[str.length];
@@ -70,11 +103,75 @@ public class MainAppController {
 
     @FXML
     void initialize() {
+
+        dragonData.clear();
+        table_dragon.getItems().clear();
+        getDragon();
+
+        update_table.setOnAction(event->{
+            dragonData.clear();
+            table_dragon.getItems().clear();
+            getDragon();
+        });
+
         info.setText("      Добрый день," + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
                 "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
         Command.setItems(langs);
         Command.setValue("Info");
+
+       table_dragon.setOnMouseClicked( event -> {
+            if( event.getClickCount() == 2 ) {
+                if(table_dragon.getSelectionModel().getSelectedItem().getOwner_id() == Main.owner_id){
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("DragonUpdate.fxml"));
+
+                    try {
+                        loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Parent root = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                }
+            }
+        });
+
+
+        out_button.setOnAction(event -> {
+            OutputCommand out = new OutputCommand();
+            Socket socket = null;
+            FXMLLoader loader = new FXMLLoader();
+            try {
+                socket = new Socket("127.0.0.1", 2323);
+                byte[] bytes;
+                out.setLog(Main.login);
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                out.setPass(Main.pass);
+
+                out.setSessionID(Main.sessionID);
+
+                DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
+                DataInputStream ois = new DataInputStream(socket.getInputStream());
+
+                out.setCommand("exit");
+                out.setArgs(new String[0]);
+
+                byte[] outBytes = (new CommandSerializer()).serializable(out);
+                oos.writeUTF(Arrays.toString(outBytes));
+                oos.flush();
+
+                out_button.getScene().getWindow().hide();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
 
         help.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
@@ -106,6 +203,9 @@ public class MainAppController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
+            dragonData.clear();
+            table_dragon.getItems().clear();
+            getDragon();
         });
 
         button_do.setOnAction(event -> {
@@ -153,6 +253,24 @@ public class MainAppController {
                         bytes = getBytes(ois.readUTF().split(", "));
                         InfoController.text = new String(bytes, StandardCharsets.UTF_8);
                         socket.close();
+                        table_dragon.getItems().clear();
+                        loader.setLocation(getClass().getResource("info.fxml"));
+                        break;
+                    case "Clear":
+                        dragonData.clear();
+                        table_dragon.getItems().clear();
+                        out.setCommand("clear");
+                        out.setArgs(new String[0]);
+                        try {
+                            byte[] outBytes = (new CommandSerializer()).serializable(out);
+                            oos.writeUTF(Arrays.toString(outBytes));
+                            oos.flush();
+                        } catch (NullPointerException | IOException ignored) {
+                        }
+
+                        bytes = getBytes(ois.readUTF().split(", "));
+                        InfoController.text = new String(bytes, StandardCharsets.UTF_8);
+                        socket.close();
                         loader.setLocation(getClass().getResource("info.fxml"));
                         break;
                 }
@@ -169,5 +287,71 @@ public class MainAppController {
             }
         });
 
+
+    }
+
+    private void getDragon() {
+        OutputCommand out = new OutputCommand();
+        try {
+            Socket socket = new Socket("127.0.0.1", 2323);
+            byte[] bytes;
+            out.setLog(Main.login);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            out.setPass(Main.pass);
+
+            out.setSessionID(Main.sessionID);
+
+            DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
+            DataInputStream ois = new DataInputStream(socket.getInputStream());
+
+            out.setCommand("show");
+            out.setArgs(new String[0]);
+            try {
+                byte[] outBytes = (new CommandSerializer()).serializable(out);
+                oos.writeUTF(Arrays.toString(outBytes));
+                oos.flush();
+            } catch (NullPointerException | IOException ignored) {
+            }
+            bytes = getBytes(ois.readUTF().split(", "));
+
+            String dragonsJSON = new String(bytes, StandardCharsets.UTF_8);
+
+            JSONWorker worker = new JSONWorker(DragonDeserializer.getDeserializer());
+
+            CollectionWorker collectionWorker = (CollectionWorker) (CollectionWorker) worker.readValue(dragonsJSON, CollectionWorker.class);
+
+            for (StoredType el : collectionWorker.collection) {
+                dragonData.add(new DragonTable(el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
+                        el.getCharacter().toString(), el.getKiller().getName(), chekerNull(el.getKiller().getWeight().toString()),
+                        chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
+                        chekerNull(el.getKiller().getLocation().getName()),el.getOwner_id()));
+            }
+
+            socket.close();
+
+
+
+            name_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("name"));
+            age_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("age"));
+            weight_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("weight"));
+            type_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("type"));
+            character_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("character"));
+            name_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killerName"));
+            weight_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_weight"));
+            height_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_height"));
+            birthday_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_birthday"));
+            location_name.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("location_name"));
+
+            table_dragon.setItems(dragonData);
+
+        } catch (IOException e) {
+        }
+    }
+
+    String chekerNull(String str){
+        if(str != null)
+            return str;
+        return "null";
     }
 }

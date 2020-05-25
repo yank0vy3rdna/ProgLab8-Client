@@ -1,17 +1,26 @@
 package net.yank0vy3rdna_and_Iuribabalin;
 
+import com.google.gson.*;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.Serializable;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class Main extends Application {
@@ -70,31 +79,6 @@ interface Storable {
 
 }
 
-interface StoredType extends Comparable<StoredType> {
-    boolean equals(StoredType obj);
-    int compareTo(StoredType obj);
-
-    String toString(Workerable worker);
-
-    Long getAge();
-
-    String getName();
-
-    long getId();
-
-    void setId(long id);
-
-    public DragonType getType();
-
-    public Coordinates getCoordinates();
-
-    public long getWeight();
-
-    public DragonCharacter getCharacter();
-
-    public Person getKiller();
-}
-
 interface TypeReader {
     Serializable create(String id, long owner_id);
     //void setUI(UI ui);
@@ -102,3 +86,4 @@ interface TypeReader {
 
 interface StoredTypeReader {
 }
+

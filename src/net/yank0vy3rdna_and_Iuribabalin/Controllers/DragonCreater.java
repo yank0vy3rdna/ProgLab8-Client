@@ -86,19 +86,20 @@ public class DragonCreater {
         dragonCharacter.setValue("CUNNING");
 
         Create_Drag.setOnAction(event -> {
-            String date = String.valueOf(birthday_killer.getValue());
+            try{
+                String date = String.valueOf(birthday_killer.getValue());
 
-            String[] date2 = date.split("-");
+                String[] date2 = date.split("-");
 
-            date = date2[0];
-            date2[0] = date2[2];
-            date2[2] = date;
+                date = date2[0];
+                date2[0] = date2[2];
+                date2[2] = date;
 
-            date = date2[0] + "-" + date2[1] + "-" + date2[2];
+                date = date2[0] + "-" + date2[1] + "-" + date2[2];
 
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
-            try {
+
                 Date birthday = format.parse(date);
 
                 Main.cord = new Coordinates(Double.parseDouble(locationX.getText()), Float.parseFloat(locationY.getText()));
@@ -148,7 +149,7 @@ public class DragonCreater {
                 alert.setHeaderText("Auth error");
                 alert.setContentText("Parsing error");
                 alert.showAndWait().ifPresent(rs -> {});
-            } catch (IOException e){
+            } catch (IOException | ArrayIndexOutOfBoundsException e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Auth error");
                 alert.setHeaderText("Auth error");

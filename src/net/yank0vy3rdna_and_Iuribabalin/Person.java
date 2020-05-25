@@ -34,7 +34,6 @@ public class Person implements Serializable {
     public int hashCode() {
         return weight.hashCode()
                 * Long.valueOf(height).hashCode()
-                * birthday.hashCode()
                 * location.hashCode();
     }
     public Person(String name, Date birthday, long height, Long weight, Location location) throws IllegalArgumentException, NullPointerException {
