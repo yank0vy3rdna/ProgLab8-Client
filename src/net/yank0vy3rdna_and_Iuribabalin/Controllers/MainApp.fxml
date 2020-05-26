@@ -8,32 +8,32 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1362.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.yank0vy3rdna_and_Iuribabalin.Controllers.MainAppController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1094.0" prefWidth="1692.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.yank0vy3rdna_and_Iuribabalin.Controllers.MainAppController">
    <children>
-      <SplitPane layoutX="-2.0" layoutY="2.0" orientation="VERTICAL" prefHeight="773.0" prefWidth="1362.0">
+      <SplitPane layoutX="-2.0" layoutY="2.0" orientation="VERTICAL" prefHeight="1071.0" prefWidth="1684.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1069.0" prefWidth="1700.0">
                <children>
-                  <SplitPane dividerPositions="0.2584493041749503" layoutX="1.0" orientation="VERTICAL" prefHeight="771.0" prefWidth="1353.0">
+                  <SplitPane dividerPositions="0.2584493041749503" layoutX="1.0" orientation="VERTICAL" prefHeight="1067.0" prefWidth="1679.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="1320.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="1691.0">
                            <children>
                               <Button fx:id="Add_dragon" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="245.0" text="Добавить дракона" />
                               <Label fx:id="lable_comm" layoutX="439.0" layoutY="27.0" prefHeight="18.0" prefWidth="380.0" text="Выберети команду и нажмине кнопку выполнить" />
-                              <Label fx:id="info" layoutX="935.0" layoutY="35.0" prefHeight="97.0" prefWidth="358.0" />
+                              <Label fx:id="info" layoutX="1301.0" layoutY="34.0" prefHeight="97.0" prefWidth="358.0" />
                               <ComboBox fx:id="Command" layoutX="439.0" layoutY="57.0" prefHeight="26.0" prefWidth="278.0" />
                               <Button fx:id="button_do" layoutX="727.0" layoutY="57.0" mnemonicParsing="false" text="Исполнить" />
                               <Button fx:id="help" layoutX="269.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Все комманды" />
-                              <Button fx:id="out_button" layoutX="935.0" layoutY="134.0" mnemonicParsing="false" text="Выход" />
+                              <Button fx:id="out_button" layoutX="1301.0" layoutY="133.0" mnemonicParsing="false" text="Выход" />
                               <Button fx:id="anima" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="Анимация" />
-                              <ComboBox fx:id="lang" layoutX="439.0" layoutY="121.0" prefHeight="26.0" prefWidth="278.0" />
-                              <Button fx:id="translate" layoutX="727.0" layoutY="121.0" mnemonicParsing="false" text="перевести" />
-                              <Label fx:id="labl_lang" layoutX="439.0" layoutY="98.0" prefHeight="18.0" prefWidth="380.0" text="Выберети язык" />
+                              <ComboBox fx:id="lang" layoutX="875.0" layoutY="55.0" prefHeight="26.0" prefWidth="278.0" />
+                              <Button fx:id="translate" layoutX="1163.0" layoutY="55.0" mnemonicParsing="false" text="Перевести" />
+                              <Label fx:id="labl_lang" layoutX="875.0" layoutY="32.0" prefHeight="18.0" prefWidth="380.0" text="Выберети язык" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="1349.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="1663.0">
                            <children>
-                              <TableView fx:id="table_dragon" prefHeight="566.0" prefWidth="1353.0">
+                              <TableView fx:id="table_dragon" prefHeight="860.0" prefWidth="1671.0">
                                 <columns>
                                     <TableColumn fx:id="name_drag" prefWidth="200.0" text="Имя" />
                                     <TableColumn fx:id="age_drag" prefWidth="120" text="Возраст" />

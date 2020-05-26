@@ -147,6 +147,15 @@ public class MainAppController {
                 labl_lang.setText("Выберети язык");
                 translate.setText("перевести");
                 lable_comm.setText("Выберети команду и нажмине кнопку выполнить");
+                name_drag.setText("Имя");
+                age_drag.setText("Возраст");
+                weight_drag.setText("Вес");
+                type_drag.setText("Тип");
+                character_drag.setText("Характер");
+                name_killer.setText("Имя убийцы");
+                weight_killer.setText("Вес убийцы");
+                height_killer.setText("Высота убийцы");
+                location_name.setText("Имя локации");
             }
             if(lang.getValue().equals("Беларускі")){
                 info.setText("      Добры дзень," + Main.login);
@@ -158,6 +167,16 @@ public class MainAppController {
                 labl_lang.setText ("абярэ мова");
                 translate.setText ("перавесці");
                 lable_comm.setText ("абярэ каманду і нажмине кнопку выканаць");
+                name_drag.setText ("Імя");
+                age_drag.setText ("Узрост");
+                weight_drag.setText ("Вага");
+                type_drag.setText ("Тып");
+                character_drag.setText ("Характар");
+                name_killer.setText ("Імя забойцы");
+                weight_killer.setText ("Вага забойцы");
+                height_killer.setText ("Вышыня забойцы");
+                location_name.setText ("Імя лакацыі");
+
             }
             if(lang.getValue().equals("Hrvatski")){
                 info.setText("      Dobar dan," + Main.login);
@@ -169,6 +188,15 @@ public class MainAppController {
                 labl_lang.setText ("Odaberite svoj jezik");
                 translate.setText ("prevesti");
                 lable_comm.setText ("Odaberite naredbu i pritisnite gumb za izvršavanje");
+                name_drag.setText ("Ime");
+                age_drag.setText ("Dob");
+                weight_drag.setText ("Težina");
+                type_drag.setText ("Vrsta");
+                character_drag.setText("znak");
+                name_killer.setText ("Ime ubojice");
+                weight_killer.setText ("Ubojica težine");
+                height_killer.setText ("Visina ubojice");
+                location_name.setText ("Naziv lokacije");
             }
             if(lang.getValue().equals("Español")){
                 info.setText("      Buenas tardes," + Main.login);
@@ -180,6 +208,15 @@ public class MainAppController {
                 labl_lang.setText ("Elige tu idioma");
                 translate.setText ("traducir");
                 lable_comm.setText ("Elija un comando y presione el botón de ejecución");
+                name_drag.setText ("Nombre");
+                age_drag.setText ("Edad");
+                weight_drag.setText ("Peso");
+                type_drag.setText ("Tipo");
+                character_drag.setText ("Carácter");
+                name_killer.setText ("Nombre del asesino");
+                weight_killer.setText ("Asesino de peso");
+                height_killer.setText ("Altura del asesino");
+                location_name.setText ("Nombre de ubicación");
             }
         });
 
