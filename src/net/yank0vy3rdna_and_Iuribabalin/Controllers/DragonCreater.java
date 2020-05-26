@@ -136,7 +136,7 @@ public class DragonCreater {
                 "CHAOTIC_EVIL");
         dragonCharacter.setItems(lang1);
         dragonCharacter.setValue ("GOOD");
-
+/*
         if(Main.lan.equals("Русский")){
 
             labl_name.setText("Имя");
@@ -207,7 +207,7 @@ public class DragonCreater {
             killer_loc_y_lable.setText ("coordinata y");
             killer_loc_z_lable.setText ("coordinata z");
             location_name_lable.setText ("nome della posizione");
-        }
+        }*/
 
         Create_Drag.setOnAction(event -> {
             try{

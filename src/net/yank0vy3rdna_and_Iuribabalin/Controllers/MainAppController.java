@@ -134,7 +134,23 @@ public class MainAppController {
         langs = FXCollections.observableArrayList("Русский", "Беларускі", "Hrvatski", "Español");
         lang.setItems(langs);
         lang.setValue("Русский");
-
+        translate.setOnAction(event->{
+            switch (lang.getValue()){
+                case "Русский":
+                    Main.resourceBundle = ResourceBundle.getBundle("locals_rus", Locale.forLanguageTag("ru"));
+                    break;
+                case "Беларускі":
+                    Main.resourceBundle = ResourceBundle.getBundle("locals_bel", Locale.forLanguageTag("be"));
+                    break;
+                case "Hrvatski":
+                    Main.resourceBundle = ResourceBundle.getBundle("locals_hor", Locale.forLanguageTag("ru"));
+                    break;
+                case "Español":
+                    Main.resourceBundle = ResourceBundle.getBundle("locals_spanish", Locale.forLanguageTag("ru"));
+                    break;
+            }
+        });
+/*
         translate.setOnAction(event->{
             Main.lan = lang.getValue();
             /*
@@ -218,8 +234,8 @@ public class MainAppController {
                 weight_killer.setText ("Asesino de peso");
                 height_killer.setText ("Altura del asesino");
                 location_name.setText ("Nombre de ubicación");
-            }*/
-        });
+            }
+        });*/
 
         anima.setOnAction(e -> {
             FXMLLoader loader = new FXMLLoader();

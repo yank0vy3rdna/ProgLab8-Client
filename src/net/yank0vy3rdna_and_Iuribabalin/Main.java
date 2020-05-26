@@ -11,13 +11,11 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.Set;
-import java.util.Timer;
+import java.util.*;
 
 public class Main extends Application {
 
-    public static String lan = "Русский";
+    public static ResourceBundle resourceBundle;
     public static boolean deleteFlag = false;
     public static boolean updateFlag = false;
     public static MainAppController mainAppController;
@@ -35,6 +33,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        resourceBundle = ResourceBundle.getBundle("locals_rus", Locale.forLanguageTag("ru"));
         Parent root = FXMLLoader.load(getClass().getResource("Controllers/sample.fxml"));
         primaryStage.setTitle("Welcome to Hell");
         primaryStage.setScene(new Scene(root, 300, 275));

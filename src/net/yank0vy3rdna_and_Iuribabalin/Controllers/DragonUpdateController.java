@@ -127,7 +127,7 @@ public class DragonUpdateController {
         ObservableList<String> langs1 = FXCollections.observableArrayList("CUNNING", "WISE", "GOOD", "CHAOTIC_EVIL");
         dragonCharacter.setItems(langs1);
         dragonCharacter.setValue(String.valueOf(dragon.getCharacter()));
-
+/*
         if(Main.lan.equals("Русский")){
             name_lable.setText("Имя");
             dragonType_lable.setText("Тип");
@@ -199,7 +199,7 @@ public class DragonUpdateController {
             location_name_label.setText ("Nombre de ubicación");
             delete.setText ("Eliminar");
             Update.setText ("Cambiar");
-        }
+        }*/
 
         name.setText(dragon.getName());
         age.setText(dragon.getAge().toString());
