@@ -123,6 +123,8 @@ public class DragonUpdateController {
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
 
+                Main.deleteFlag = true;
+
                 delete.getScene().getWindow().hide();
             }catch (IOException ex){
                 ex.printStackTrace();

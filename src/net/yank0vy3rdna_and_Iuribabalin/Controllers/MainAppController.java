@@ -422,10 +422,12 @@ public class MainAppController {
             if(dragoners.size() > size) {
                 dragoners.clear();
                 return true;
+            }else if(dragoners.size() < size && Main.deleteFlag){
+                dragoners.clear();
+                Main.deleteFlag = false;
+                return true;
             }
             socket.close();
-        }catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

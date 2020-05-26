@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class Main extends Application {
+    public static boolean deleteFlag = false;
     public static MainAppController mainAppController;
     public static String login;
     public static byte[] pass;
