@@ -39,15 +39,17 @@ public class Anime {
         canvas.setWidth(WINDOW_X);
         TimerTask task = new TimerTask() {
             public void run() {
+                canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 for(StoredType dragon : Main.collectionWorker.collection){
                     int color_owner_id = (int)(dragon.getOwner_id() % 7);
                     int x = dragon.getCoordinates().getX().intValue();
                     int y = (int)dragon.getCoordinates().getY();
                     int size = (int)(dragon.getWeight()/2);
-                    draw_dragon(x,y,size,color_owner_id);
+                    double offset = System.currentTimeMillis() / 300.;
+                    draw_dragon(x, (int) (y + Math.sin(offset)*20),size,color_owner_id);
                 }
             }
         };
-        Main.timer.schedule(task, 0L, 1000L);
+        Main.timer.schedule(task, 1000L, 200L);
     }
 }
