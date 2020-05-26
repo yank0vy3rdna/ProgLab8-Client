@@ -16,11 +16,11 @@
       <TextField fx:id="locationX" layoutX="145.0" layoutY="158.0" />
       <ChoiceBox fx:id="dragonType" layoutX="381.0" layoutY="34.0" prefHeight="26.0" prefWidth="171.0" />
       <ChoiceBox fx:id="dragonCharacter" layoutX="594.0" layoutY="34.0" prefHeight="26.0" prefWidth="160.0" />
-      <Label fx:id="labl_name" layoutX="82.0" layoutY="39.0" prefHeight="16.0" prefWidth="31.0" text="Имя" />
+      <Label fx:id="labl_name" layoutX="67.0" layoutY="39.0" prefHeight="16.0" prefWidth="50.0" text="Имя" />
       <Label fx:id="Type_lable" layoutX="452.0" layoutY="14.0" prefHeight="16.0" prefWidth="30.0" text="Тип" />
       <Label fx:id="character_lable" layoutX="642.0" layoutY="14.0" text="Характер" />
-      <Label fx:id="age_lable" layoutX="82.0" layoutY="78.0" text="Возраст" />
-      <Label fx:id="weight_lable" layoutX="82.0" layoutY="122.0" text="Вес" />
+      <Label fx:id="age_lable" layoutX="67.0" layoutY="78.0" text="Возраст" />
+      <Label fx:id="weight_lable" layoutX="67.0" layoutY="122.0" text="Вес" />
       <Label fx:id="locationX_lable" layoutX="43.0" layoutY="163.0" text="координата х" />
       <Label fx:id="locationY_lable" layoutX="43.0" layoutY="203.0" text="координата у" />
       <TextField fx:id="locationY" layoutX="145.0" layoutY="198.0" />

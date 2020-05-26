@@ -123,14 +123,21 @@ public class DragonCreater {
     @FXML
     void initialize() {
 
-        if(Main.lan.equals("Русский")){
-            ObservableList<String> langs = FXCollections.observableArrayList("ВОДА", "ПОДЗЕМНЫЙ", "ВОЗДУХ", "ОГОНЬ");
-            dragonType.setItems(langs);
-            dragonType.setValue("ВОЗДУХ");
+        ObservableList<String> lang = FXCollections.observableArrayList ( "WATER",
+                "UNDERGROUND",
+                "AIR",
+                "FIRE");
+        dragonType.setItems(lang);
+        dragonType.setValue ("AIR");
 
-            ObservableList<String> langs1 = FXCollections.observableArrayList("Хитрость", "Мудрый", "Хороший", "Хаотическое зло");
-            dragonCharacter.setItems(langs1);
-            dragonCharacter.setValue("Хороший");
+        ObservableList<String> lang1 = FXCollections.observableArrayList ("CUNNING",
+                "WISE",
+                "GOOD",
+                "CHAOTIC_EVIL");
+        dragonCharacter.setItems(lang1);
+        dragonCharacter.setValue ("GOOD");
+
+        if(Main.lan.equals("Русский")){
 
             labl_name.setText("Имя");
             Type_lable.setText("Тип");
@@ -150,14 +157,6 @@ public class DragonCreater {
 
         }
         if(Main.lan.equals("Беларускі")){
-            ObservableList <String> langs = FXCollections.observableArrayList ("ВАДА", "падземныя", "паветра", " АГОНЬ");
-            dragonType.setItems (langs);
-            dragonType.setValue ("паветра");
-
-            ObservableList <String> langs1 = FXCollections.observableArrayList ( "Хітрыкі", "Мудрыя", "Ласкавы", "хаатычнага зло");
-            dragonCharacter.setItems (langs1);
-            dragonCharacter.setValue ("добрыя");
-
             labl_name.setText ("Імя");
             Type_lable.setText ("Тып");
             character_lable.setText ("Характар");
@@ -175,14 +174,6 @@ public class DragonCreater {
             location_name_lable.setText ("Назва лакацыі");
         }
         if(Main.lan.equals("Hrvatski")){
-            ObservableList<String> langs = FXCollections.observableArrayList ("voda", "podzemni", "zrak", " vatra");
-            dragonType.setItems(langs);
-            dragonType.setValue ("zrak");
-
-            ObservableList<String> langs1 = FXCollections.observableArrayList ("trik", "mudar", "dobar", " kaotično zlo");
-            dragonCharacter.setItems(langs1);
-            dragonCharacter.setValue ("dobar");
-
             labl_name.setText ("ime");
             Type_lable.setText ("Tip");
             character_lable.setText ("priroda");
@@ -200,13 +191,6 @@ public class DragonCreater {
             location_name_lable.setText(" naziv lokacije");
         }
         if(Main.lan.equals("Español")) {
-            ObservableList<String> langs = FXCollections.observableArrayList ("acqua", "sotterraneo", "aria", " fuoco");
-            dragonType.setItems(langs);
-            dragonType.setValue ("aria");
-
-            ObservableList<String> langs1 = FXCollections.observableArrayList ("astuzia", "saggio", "Buono", " male caotico");
-            dragonCharacter.setItems(langs1);
-            dragonCharacter.setValue ("Buono");
 
             labl_name.setText ("nome");
             Type_lable.setText ("Tipo");

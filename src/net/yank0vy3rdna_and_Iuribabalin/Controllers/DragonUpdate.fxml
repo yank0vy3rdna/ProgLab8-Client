@@ -15,28 +15,28 @@
       <TextField fx:id="locationX" layoutX="145.0" layoutY="158.0" />
       <ChoiceBox fx:id="dragonType" layoutX="381.0" layoutY="34.0" prefHeight="26.0" prefWidth="171.0" />
       <ChoiceBox fx:id="dragonCharacter" layoutX="594.0" layoutY="34.0" prefHeight="26.0" prefWidth="160.0" />
-      <Label layoutX="82.0" layoutY="39.0" prefHeight="16.0" prefWidth="31.0" text="Имя" />
-      <Label layoutX="452.0" layoutY="14.0" prefHeight="16.0" prefWidth="30.0" text="Тип" />
-      <Label layoutX="642.0" layoutY="14.0" text="Характер" />
-      <Label layoutX="82.0" layoutY="78.0" text="Возраст" />
-      <Label layoutX="82.0" layoutY="122.0" text="Вес" />
-      <Label layoutX="43.0" layoutY="163.0" text="координата х" />
-      <Label layoutX="43.0" layoutY="203.0" text="координата у" />
+      <Label fx:id="name_lable" layoutX="58.0" layoutY="39.0" prefHeight="16.0" prefWidth="65.0" text="Имя" />
+      <Label fx:id="dragonType_lable" layoutX="452.0" layoutY="14.0" prefHeight="16.0" prefWidth="30.0" text="Тип" />
+      <Label fx:id="dragonCharacter_lable" layoutX="642.0" layoutY="14.0" text="Характер" />
+      <Label fx:id="age_lable" layoutX="82.0" layoutY="78.0" text="Возраст" />
+      <Label fx:id="weight_lable" layoutX="82.0" layoutY="122.0" text="Вес" />
+      <Label fx:id="locationX_lable" layoutX="43.0" layoutY="163.0" text="координата х" />
+      <Label fx:id="locationY_lable" layoutX="43.0" layoutY="203.0" text="координата у" />
       <TextField fx:id="locationY" layoutX="145.0" layoutY="198.0" />
       <TextField fx:id="killerName" layoutX="382.0" layoutY="130.0" />
       <TextField fx:id="height" layoutX="589.0" layoutY="130.0" />
-      <Label layoutX="381.0" layoutY="109.0" text="Имя убийцы" />
-      <Label layoutX="589.0" layoutY="101.0" text="Высота" />
+      <Label fx:id="killerName_lable" layoutX="381.0" layoutY="109.0" text="Имя убийцы" />
+      <Label fx:id="height_lable" layoutX="589.0" layoutY="101.0" text="Высота" />
       <TextField fx:id="killer_weight" layoutX="380.0" layoutY="185.0" />
-      <Label layoutX="382.0" layoutY="163.0" text="Вес" />
+      <Label fx:id="killer_weight_lable" layoutX="382.0" layoutY="163.0" text="Вес" />
       <TextField fx:id="killer_loc_x" layoutX="589.0" layoutY="183.0" />
-      <Label layoutX="592.0" layoutY="161.0" text="координата х" />
-      <Label layoutX="589.0" layoutY="228.0" text="координата у" />
+      <Label fx:id="killer_loc_x_label" layoutX="592.0" layoutY="161.0" text="координата х" />
+      <Label fx:id="killer_loc_y_label" layoutX="589.0" layoutY="228.0" text="координата у" />
       <TextField fx:id="killer_loc_y" layoutX="589.0" layoutY="248.0" />
-      <Label layoutX="589.0" layoutY="287.0" text="координата z" />
+      <Label fx:id="killer_loc_z_label" layoutX="589.0" layoutY="287.0" text="координата z" />
       <TextField fx:id="killer_loc_z" layoutX="589.0" layoutY="307.0" />
       <TextField fx:id="location_name" layoutX="382.0" layoutY="241.0" />
-      <Label layoutX="384.0" layoutY="219.0" text="Название локации" />
+      <Label fx:id="location_name_label" layoutX="384.0" layoutY="219.0" text="Название локации" />
       <Button fx:id="delete" layoutX="237.0" layoutY="416.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Удалить" />
    </children>
 </AnchorPane>
