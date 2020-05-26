@@ -137,6 +137,7 @@ public class MainAppController {
 
         translate.setOnAction(event->{
             Main.lan = lang.getValue();
+            /*
             if(lang.getValue().equals("Русский")){
                 info.setText("      Добрый день," + Main.login);
                 button_do.setText("Исполнить");
@@ -217,7 +218,7 @@ public class MainAppController {
                 weight_killer.setText ("Asesino de peso");
                 height_killer.setText ("Altura del asesino");
                 location_name.setText ("Nombre de ubicación");
-            }
+            }*/
         });
 
         anima.setOnAction(e -> {
@@ -515,6 +516,8 @@ public class MainAppController {
                         chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
                         chekerNull(el.getKiller().getLocation().getName()), el.getOwner_id()));
             }
+
+            System.out.println(size + " " + dragoners.size());
 
             if(dragoners.size() > size) {
                 dragoners.clear();

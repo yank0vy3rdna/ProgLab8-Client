@@ -18,32 +18,32 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="1691.0">
                            <children>
-                              <Button fx:id="Add_dragon" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="245.0" text="Добавить дракона" />
-                              <Label fx:id="lable_comm" layoutX="439.0" layoutY="27.0" prefHeight="18.0" prefWidth="380.0" text="Выберети команду и нажмине кнопку выполнить" />
-                              <Label fx:id="info" layoutX="1301.0" layoutY="34.0" prefHeight="97.0" prefWidth="358.0" />
+                              <Button fx:id="Add_dragon" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="245.0" text="%Add_dragon.text" />
+                              <Label fx:id="lable_comm" layoutX="439.0" layoutY="27.0" prefHeight="18.0" prefWidth="380.0" text="%labelComm.text" />
+                              <Label fx:id="info" layoutX="1301.0" layoutY="34.0" prefHeight="97.0" prefWidth="358.0" text="%info.text" />
                               <ComboBox fx:id="Command" layoutX="439.0" layoutY="57.0" prefHeight="26.0" prefWidth="278.0" />
-                              <Button fx:id="button_do" layoutX="727.0" layoutY="57.0" mnemonicParsing="false" text="Исполнить" />
-                              <Button fx:id="help" layoutX="269.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Все комманды" />
-                              <Button fx:id="out_button" layoutX="1301.0" layoutY="133.0" mnemonicParsing="false" text="Выход" />
-                              <Button fx:id="anima" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="Анимация" />
+                              <Button fx:id="button_do" layoutX="727.0" layoutY="57.0" mnemonicParsing="false" text="%do.text" />
+                              <Button fx:id="help" layoutX="269.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="%help.text" />
+                              <Button fx:id="out_button" layoutX="1301.0" layoutY="133.0" mnemonicParsing="false" text="%out.text" />
+                              <Button fx:id="anima" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="%anime.text" />
                               <ComboBox fx:id="lang" layoutX="875.0" layoutY="55.0" prefHeight="26.0" prefWidth="278.0" />
-                              <Button fx:id="translate" layoutX="1163.0" layoutY="55.0" mnemonicParsing="false" text="Перевести" />
-                              <Label fx:id="labl_lang" layoutX="875.0" layoutY="32.0" prefHeight="18.0" prefWidth="380.0" text="Выберети язык" />
+                              <Button fx:id="translate" layoutX="1163.0" layoutY="55.0" mnemonicParsing="false" text="%translate.text" />
+                              <Label fx:id="labl_lang" layoutX="875.0" layoutY="32.0" prefHeight="18.0" prefWidth="380.0" text="%labelLang.text" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="1663.0">
                            <children>
                               <TableView fx:id="table_dragon" prefHeight="860.0" prefWidth="1671.0">
                                 <columns>
-                                    <TableColumn fx:id="name_drag" prefWidth="200.0" text="Имя" />
-                                    <TableColumn fx:id="age_drag" prefWidth="120" text="Возраст" />
-                                    <TableColumn fx:id="weight_drag" prefWidth="100" text="Вес" />
-                                    <TableColumn fx:id="type_drag" prefWidth="150" text="Тип" />
-                                    <TableColumn fx:id="character_drag" prefWidth="150" text="Характер" />
-                                    <TableColumn fx:id="name_killer" prefWidth="138.0" text="Имя убийцы" />
-                                    <TableColumn fx:id="weight_killer" prefWidth="155.0" text="Вес убийцы" />
-                                    <TableColumn fx:id="height_killer" prefWidth="142.0" text="Высота убийцы" />
-                                    <TableColumn fx:id="location_name" prefWidth="200.0" text="Имя локации" />
+                                    <TableColumn fx:id="name_drag" prefWidth="200.0" text="%name.text" />
+                                    <TableColumn fx:id="age_drag" prefWidth="120" text="%age.text" />
+                                    <TableColumn fx:id="weight_drag" prefWidth="100" text="%weight.text" />
+                                    <TableColumn fx:id="type_drag" prefWidth="150" text="%type.text" />
+                                    <TableColumn fx:id="character_drag" prefWidth="150" text="%character.text" />
+                                    <TableColumn fx:id="name_killer" prefWidth="138.0" text="%nameKiller.text" />
+                                    <TableColumn fx:id="weight_killer" prefWidth="155.0" text="%weightKiller.text" />
+                                    <TableColumn fx:id="height_killer" prefWidth="142.0" text="%heightKiller.text" />
+                                    <TableColumn fx:id="location_name" prefWidth="200.0" text="%locationName.text" />
                                 </columns>
                               </TableView>
                            </children>

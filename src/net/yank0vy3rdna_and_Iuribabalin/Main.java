@@ -85,4 +85,3 @@ interface TypeReader {
 
 interface StoredTypeReader {
 }
-
