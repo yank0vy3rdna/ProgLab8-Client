@@ -110,7 +110,7 @@ public class MainAppController {
     }
 
     void update_table_func() {
-        if(getChek(dragonData.size()))
+        if(getChek(dragonData.size(), dragonData))
             getDragons();
     }
 
@@ -476,7 +476,7 @@ public class MainAppController {
         }
     }
 
-    private boolean getChek(int size){
+    private boolean getChek(int size, ObservableList<DragonTable> dragonTable){
         OutputCommand out = new OutputCommand();
         try {
             Socket socket = new Socket("127.0.0.1", 2323);
@@ -527,6 +527,8 @@ public class MainAppController {
                 dragoners.clear();
                 Main.updateFlag = false;
                 return true;
+            }else if(dragoners.size() == size) {
+
             }
             socket.close();
         } catch (IOException e) {
@@ -539,5 +541,14 @@ public class MainAppController {
         if (str != null)
             return str;
         return "null";
+    }
+
+    boolean chekerDragonTable(DragonTable el1 , DragonTable el2){
+        if(el1.getName()!=el2.getName() || el1.getKillerName()!=el2.getKillerName() || el1.getAge()!=el2.getAge()||el1.getCharacter()!=el2.getCharacter()
+        || el1.getKiller_height()!=el2.getKiller_height()||el1.getKiller_weight()!=el2.getKiller_weight()||el1.getLocation_name()!=el2.getLocation_name()
+        ||el1.getType()!=el2.getType()||el1.getWeight()!=el2.getWeight())
+            return true;
+        else
+            return false;
     }
 }
