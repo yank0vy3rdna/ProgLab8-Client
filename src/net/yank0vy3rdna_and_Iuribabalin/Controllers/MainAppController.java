@@ -127,8 +127,7 @@ public class MainAppController {
         Main.timer.schedule(task, 0L, 1000L);
 
         info.setText("      Добрый день," + Main.login);
-        ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
-                "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
+        ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Execute Script", "Sum of age");
         Command.setItems(langs);
         Command.setValue("Info");
 
@@ -340,7 +339,7 @@ public class MainAppController {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
                 out.setPass(Main.pass);
-
+                out.setOwner_id(Main.owner_id);
                 out.setSessionID(Main.sessionID);
 
                 DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
@@ -362,8 +361,8 @@ public class MainAppController {
 
                         loader.setLocation(getClass().getResource("info.fxml"));
                         break;
-                    case "Save":
-                        out.setCommand("save");
+                    case "Sum of age":
+                        out.setCommand("sum_of_age");
                         out.setArgs(new String[0]);
                         try {
                             byte[] outBytes = (new CommandSerializer()).serializable(out);
@@ -371,11 +370,11 @@ public class MainAppController {
                             oos.flush();
                         } catch (NullPointerException | IOException ignored) {
                         }
-
                         bytes = getBytes(ois.readUTF().split(", "));
+
                         InfoController.text = new String(bytes, StandardCharsets.UTF_8);
                         socket.close();
-                        table_dragon.getItems().clear();
+
                         loader.setLocation(getClass().getResource("info.fxml"));
                         break;
                     case "Clear":
@@ -399,6 +398,7 @@ public class MainAppController {
                         loader.setLocation(getClass().getResource("ExecuteScript.fxml"));
                         break;
                 }
+                getDragons();
                 try {
                     loader.load();
                     Parent root = loader.getRoot();
@@ -415,7 +415,7 @@ public class MainAppController {
 
     }
 
-    private void getDragons() {
+    public void getDragons() {
         OutputCommand out = new OutputCommand();
         try {
             Socket socket = new Socket("127.0.0.1", 2323);

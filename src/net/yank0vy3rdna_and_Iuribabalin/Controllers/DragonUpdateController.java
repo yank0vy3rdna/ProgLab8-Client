@@ -241,6 +241,7 @@ public class DragonUpdateController {
                 oos.flush();
 
                 Main.deleteFlag = true;
+                Main.mainAppController.getDragons();
 
                 delete.getScene().getWindow().hide();
             }catch (IOException ex){
@@ -281,7 +282,7 @@ public class DragonUpdateController {
                 byte[] outBytes = (new CommandSerializer()).serializable(out);
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
-
+                Main.mainAppController.getDragons();
                 Update.getScene().getWindow().hide();
             }catch (IOException ex){
                 ex.printStackTrace();
