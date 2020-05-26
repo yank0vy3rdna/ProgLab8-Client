@@ -14,7 +14,6 @@ import net.yank0vy3rdna_and_Iuribabalin.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -29,6 +28,9 @@ public class MainAppController {
 
     @FXML
     private Button Add_dragon;
+
+    @FXML
+    private Label lable_comm;
 
     @FXML
     private Label info;
@@ -46,7 +48,20 @@ public class MainAppController {
     private Button out_button;
 
     @FXML
+    private Button anima;
+
+    @FXML
+    private ComboBox<String> lang;
+
+    @FXML
+    private Button translate;
+
+    @FXML
+    private Label labl_lang;
+
+    @FXML
     private TableView<DragonTable> table_dragon;
+
     @FXML
     private TableColumn<DragonTable, String> name_drag;
 
@@ -72,13 +87,7 @@ public class MainAppController {
     private TableColumn<DragonTable, String> height_killer;
 
     @FXML
-    private TableColumn<DragonTable, String> birthday_killer;
-
-    @FXML
     private TableColumn<DragonTable, String> location_name;
-
-    @FXML
-    private Button anima;
 
 
     static byte[] getBytes(String[] str) {
@@ -122,6 +131,58 @@ public class MainAppController {
                 "Execute Script", "Sum of age", "Count less than age", "Filter contains name");
         Command.setItems(langs);
         Command.setValue("Info");
+
+        langs = FXCollections.observableArrayList("Русский", "Беларускі", "Hrvatski", "Español");
+        lang.setItems(langs);
+        lang.setValue("Русский");
+
+        translate.setOnAction(event->{
+            if(lang.getValue().equals("Русский")){
+                info.setText("      Добрый день," + Main.login);
+                button_do.setText("Исполнить");
+                Add_dragon.setText("Добавить дракона");
+                help.setText("Все комманды");
+                anima.setText("Анимация");
+                out_button.setText("Выход");
+                labl_lang.setText("Выберети язык");
+                translate.setText("перевести");
+                lable_comm.setText("Выберети команду и нажмине кнопку выполнить");
+            }
+            if(lang.getValue().equals("Беларускі")){
+                info.setText("      Добры дзень," + Main.login);
+                button_do.setText("Выканаць");
+                Add_dragon.setText ("Дадаць дракона");
+                help.setText ("Усе Коммандо");
+                anima.setText ("Анімацыя");
+                out_button.setText ("Выхад");
+                labl_lang.setText ("абярэ мова");
+                translate.setText ("перавесці");
+                lable_comm.setText ("абярэ каманду і нажмине кнопку выканаць");
+            }
+            if(lang.getValue().equals("Hrvatski")){
+                info.setText("      Dobar dan," + Main.login);
+                button_do.setText("Izvršiti");
+                Add_dragon.setText ("Dodaj zmaja");
+                help.setText ("Sve naredbe");
+                anima.setText ("Animacija");
+                out_button.setText ("Izlaz");
+                labl_lang.setText ("Odaberite svoj jezik");
+                translate.setText ("prevesti");
+                lable_comm.setText ("Odaberite naredbu i pritisnite gumb za izvršavanje");
+            }
+            if(lang.getValue().equals("Español")){
+                info.setText("      Buenas tardes," + Main.login);
+                button_do.setText("Ejecutar");
+                Add_dragon.setText ("Agregar dragón");
+                help.setText ("Todos los comandos");
+                anima.setText ("Animación");
+                out_button.setText ("Salir");
+                labl_lang.setText ("Elige tu idioma");
+                translate.setText ("traducir");
+                lable_comm.setText ("Elija un comando y presione el botón de ejecución");
+            }
+        });
+
         anima.setOnAction(e -> {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("anime.fxml"));
@@ -363,15 +424,15 @@ public class MainAppController {
 
             socket.close();
 
-            name_drag.setCellValueFactory(new PropertyValueFactory<>("name"));
-            age_drag.setCellValueFactory(new PropertyValueFactory<>("age"));
-            weight_drag.setCellValueFactory(new PropertyValueFactory<>("weight"));
-            type_drag.setCellValueFactory(new PropertyValueFactory<>("type"));
-            character_drag.setCellValueFactory(new PropertyValueFactory<>("character"));
-            name_killer.setCellValueFactory(new PropertyValueFactory<>("killerName"));
-            weight_killer.setCellValueFactory(new PropertyValueFactory<>("killer_weight"));
-            height_killer.setCellValueFactory(new PropertyValueFactory<>("killer_height"));
-            location_name.setCellValueFactory(new PropertyValueFactory<>("location_name"));
+            name_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("name"));
+            age_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("age"));
+            weight_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("weight"));
+            type_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("type"));
+            character_drag.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("character"));
+            name_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killerName"));
+            weight_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_weight"));
+            height_killer.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("killer_height"));
+            location_name.setCellValueFactory(new PropertyValueFactory<DragonTable, String>("location_name"));
 
             table_dragon.setItems(dragonData);
 

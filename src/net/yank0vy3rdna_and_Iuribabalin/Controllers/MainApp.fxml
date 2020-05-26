@@ -19,28 +19,31 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="1320.0">
                            <children>
                               <Button fx:id="Add_dragon" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="245.0" text="Добавить дракона" />
-                              <Label layoutX="439.0" layoutY="27.0" prefHeight="18.0" prefWidth="380.0" text="Выберети команду и нажмине кнопку выполнить" />
-                              <Label fx:id="info" layoutX="950.0" layoutY="37.0" prefHeight="97.0" prefWidth="358.0" />
+                              <Label fx:id="lable_comm" layoutX="439.0" layoutY="27.0" prefHeight="18.0" prefWidth="380.0" text="Выберети команду и нажмине кнопку выполнить" />
+                              <Label fx:id="info" layoutX="935.0" layoutY="35.0" prefHeight="97.0" prefWidth="358.0" />
                               <ComboBox fx:id="Command" layoutX="439.0" layoutY="57.0" prefHeight="26.0" prefWidth="278.0" />
                               <Button fx:id="button_do" layoutX="727.0" layoutY="57.0" mnemonicParsing="false" text="Исполнить" />
                               <Button fx:id="help" layoutX="269.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Все комманды" />
                               <Button fx:id="out_button" layoutX="935.0" layoutY="134.0" mnemonicParsing="false" text="Выход" />
                               <Button fx:id="anima" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" text="Анимация" />
+                              <ComboBox fx:id="lang" layoutX="439.0" layoutY="121.0" prefHeight="26.0" prefWidth="278.0" />
+                              <Button fx:id="translate" layoutX="727.0" layoutY="121.0" mnemonicParsing="false" text="перевести" />
+                              <Label fx:id="labl_lang" layoutX="439.0" layoutY="98.0" prefHeight="18.0" prefWidth="380.0" text="Выберети язык" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="1349.0">
                            <children>
                               <TableView fx:id="table_dragon" prefHeight="566.0" prefWidth="1353.0">
                                 <columns>
-                                    <TableColumn fx:id="name_drag" prefWidth="200.0" text="Name" />
-                                    <TableColumn fx:id="age_drag" prefWidth="120" text="Age" />
-                                    <TableColumn fx:id="weight_drag" prefWidth="100" text="Weight" />
-                                    <TableColumn fx:id="type_drag" prefWidth="150" text="Type" />
-                                    <TableColumn fx:id="character_drag" prefWidth="150" text="character" />
-                                    <TableColumn fx:id="name_killer" prefWidth="200.0" text="Killer name" />
-                                    <TableColumn fx:id="weight_killer" prefWidth="120.0" text="Killer weight" />
-                                    <TableColumn fx:id="height_killer" prefWidth="115.0" text="Killer height" />
-                                    <TableColumn fx:id="location_name" prefWidth="200.0" text="Location name" />
+                                    <TableColumn fx:id="name_drag" prefWidth="200.0" text="Имя" />
+                                    <TableColumn fx:id="age_drag" prefWidth="120" text="Возраст" />
+                                    <TableColumn fx:id="weight_drag" prefWidth="100" text="Вес" />
+                                    <TableColumn fx:id="type_drag" prefWidth="150" text="Тип" />
+                                    <TableColumn fx:id="character_drag" prefWidth="150" text="Характер" />
+                                    <TableColumn fx:id="name_killer" prefWidth="138.0" text="Имя убийцы" />
+                                    <TableColumn fx:id="weight_killer" prefWidth="155.0" text="Вес убийцы" />
+                                    <TableColumn fx:id="height_killer" prefWidth="142.0" text="Высота убийцы" />
+                                    <TableColumn fx:id="location_name" prefWidth="200.0" text="Имя локации" />
                                 </columns>
                               </TableView>
                            </children>
