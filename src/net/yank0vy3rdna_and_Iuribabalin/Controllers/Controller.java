@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import net.yank0vy3rdna_and_Iuribabalin.Client;
+import net.yank0vy3rdna_and_Iuribabalin.Main;
 import net.yank0vy3rdna_and_Iuribabalin.OutputCommand;
 
 import java.io.IOException;
@@ -46,17 +47,15 @@ public class Controller {
                    if(client.authorization(log_id.getText(), pass_id.getText(),new OutputCommand())){
                        log_button.getScene().getWindow().hide();
                        loader.setLocation(getClass().getResource("MainApp.fxml"));
-
+                       Parent root;
                        try {
-                           loader.load();
+                           root = FXMLLoader.load(getClass().getResource("MainApp.fxml"), Main.resourceBundle);
+                           Stage stage = new Stage();
+                           stage.setScene(new Scene(root));
+                           stage.showAndWait();
                        } catch (IOException e) {
                            e.printStackTrace();
                        }
-
-                       Parent root = loader.getRoot();
-                       Stage stage = new Stage();
-                       stage.setScene(new Scene(root));
-                       stage.showAndWait();
                    }else{
                        Alert alert = new Alert(Alert.AlertType.ERROR);
                        alert.setTitle("Error");

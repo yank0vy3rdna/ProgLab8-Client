@@ -33,7 +33,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        resourceBundle = ResourceBundle.getBundle("locals_rus", Locale.forLanguageTag("ru"));
+        Main.resourceBundle = ResourceBundle.getBundle("resources/locals_rus", Locale.forLanguageTag("ru"));
         Parent root = FXMLLoader.load(getClass().getResource("Controllers/sample.fxml"));
         primaryStage.setTitle("Welcome to Hell");
         primaryStage.setScene(new Scene(root, 300, 275));

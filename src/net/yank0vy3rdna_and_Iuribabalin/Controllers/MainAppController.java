@@ -126,7 +126,7 @@ public class MainAppController {
 
         Main.timer.schedule(task, 0L, 1000L);
 
-        info.setText(info.getText() + Main.login);
+        info.setText(info.getText() + " " + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Sum of age");
         Command.setItems(langs);
         Command.setValue("Info");
@@ -137,16 +137,16 @@ public class MainAppController {
         translate.setOnAction(event->{
             switch (lang.getValue()){
                 case "Русский":
-                    Main.resourceBundle = ResourceBundle.getBundle("locals_rus", Locale.forLanguageTag("ru"));
+                    Main.resourceBundle = ResourceBundle.getBundle("resources/locals", Locale.forLanguageTag("ru"));
                     break;
                 case "Беларускі":
-                    Main.resourceBundle = ResourceBundle.getBundle("locals_bel", Locale.forLanguageTag("be"));
+                    Main.resourceBundle = ResourceBundle.getBundle("resources/locals_bel", Locale.forLanguageTag("be"));
                     break;
                 case "Hrvatski":
-                    Main.resourceBundle = ResourceBundle.getBundle("locals_hor", Locale.forLanguageTag("ru"));
+                    Main.resourceBundle = ResourceBundle.getBundle("resources/locals_hor", Locale.forLanguageTag("ru"));
                     break;
                 case "Español":
-                    Main.resourceBundle = ResourceBundle.getBundle("locals_spanish", Locale.forLanguageTag("ru"));
+                    Main.resourceBundle = ResourceBundle.getBundle("resources/locals_spanish", Locale.forLanguageTag("ru"));
                     break;
             }
         });
