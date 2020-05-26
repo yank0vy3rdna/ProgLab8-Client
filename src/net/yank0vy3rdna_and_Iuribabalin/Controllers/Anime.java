@@ -50,6 +50,6 @@ public class Anime {
                 }
             }
         };
-        Main.timer.schedule(task, 1000L, 200L);
+        Main.timer.schedule(task, 1000L, 100L);
     }
 }
