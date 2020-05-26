@@ -523,6 +523,10 @@ public class MainAppController {
                 dragoners.clear();
                 Main.deleteFlag = false;
                 return true;
+            }else if(dragoners.size() == size && Main.updateFlag){
+                dragoners.clear();
+                Main.updateFlag = false;
+                return true;
             }
             socket.close();
         } catch (IOException e) {

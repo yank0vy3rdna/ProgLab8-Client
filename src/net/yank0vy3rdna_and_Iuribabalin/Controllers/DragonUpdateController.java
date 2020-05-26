@@ -251,6 +251,7 @@ public class DragonUpdateController {
 
         Update.setOnAction(event->{
             try {
+                Main.updateFlag = true;
                 OutputCommand out = new OutputCommand();
                 Socket socket = null;
                 FXMLLoader loader = new FXMLLoader();
