@@ -16,6 +16,8 @@ import java.util.Set;
 import java.util.Timer;
 
 public class Main extends Application {
+
+    public static String lan = "Русский";
     public static boolean deleteFlag = false;
     public static MainAppController mainAppController;
     public static String login;

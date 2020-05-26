@@ -137,6 +137,7 @@ public class MainAppController {
         lang.setValue("Русский");
 
         translate.setOnAction(event->{
+            Main.lan = lang.getValue();
             if(lang.getValue().equals("Русский")){
                 info.setText("      Добрый день," + Main.login);
                 button_do.setText("Исполнить");
