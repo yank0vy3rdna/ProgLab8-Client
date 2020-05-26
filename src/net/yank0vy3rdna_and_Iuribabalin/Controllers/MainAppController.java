@@ -126,7 +126,7 @@ public class MainAppController {
 
         Main.timer.schedule(task, 0L, 1000L);
 
-        info.setText("      Добрый день," + Main.login);
+        info.setText(info.getText() + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Sum of age");
         Command.setItems(langs);
         Command.setValue("Info");
