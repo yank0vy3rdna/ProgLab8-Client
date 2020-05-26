@@ -528,7 +528,11 @@ public class MainAppController {
                 Main.updateFlag = false;
                 return true;
             }else if(dragoners.size() == size) {
-
+                for(int i=0;i<size;i++){
+                    if(chekerDragonTable(dragoners.get(i), dragonTable.get(i))){
+                        return true;
+                    }
+                }
             }
             socket.close();
         } catch (IOException e) {
