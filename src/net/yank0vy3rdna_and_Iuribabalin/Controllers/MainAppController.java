@@ -2,7 +2,6 @@ package net.yank0vy3rdna_and_Iuribabalin.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,17 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import net.yank0vy3rdna_and_Iuribabalin.*;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class MainAppController {
     public ObservableList<DragonTable> dragonData = FXCollections.observableArrayList();
@@ -105,7 +101,8 @@ public class MainAppController {
     }
 
     void update_table_func() {
-        getDragons();
+        if(getChek(dragonData.size()))
+            getDragons();
     }
 
     @FXML
@@ -374,13 +371,65 @@ public class MainAppController {
             name_killer.setCellValueFactory(new PropertyValueFactory<>("killerName"));
             weight_killer.setCellValueFactory(new PropertyValueFactory<>("killer_weight"));
             height_killer.setCellValueFactory(new PropertyValueFactory<>("killer_height"));
-//            birthday_killer.setCellValueFactory(new PropertyValueFactory<>("killer_birthday"));
             location_name.setCellValueFactory(new PropertyValueFactory<>("location_name"));
 
             table_dragon.setItems(dragonData);
 
         } catch (IOException ignored) {
         }
+    }
+
+    private boolean getChek(int size){
+        OutputCommand out = new OutputCommand();
+        try {
+            Socket socket = new Socket("127.0.0.1", 2323);
+            byte[] bytes;
+            out.setLog(Main.login);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            out.setPass(Main.pass);
+
+            out.setSessionID(Main.sessionID);
+
+            DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
+            DataInputStream ois = new DataInputStream(socket.getInputStream());
+
+            out.setCommand("show");
+            out.setArgs(new String[0]);
+            try {
+                byte[] outBytes = (new CommandSerializer()).serializable(out);
+                oos.writeUTF(Arrays.toString(outBytes));
+                oos.flush();
+            } catch (NullPointerException | IOException ignored) {
+            }
+            bytes = getBytes(ois.readUTF().split(", "));
+
+            String dragonsJSON = new String(bytes, StandardCharsets.UTF_8);
+
+            JSONWorker worker = new JSONWorker(DragonDeserializer.getDeserializer());
+
+            CollectionWorker collectionWorker = (CollectionWorker) (CollectionWorker) worker.readValue(dragonsJSON, CollectionWorker.class);
+
+            ArrayList<DragonTable> dragoners = new ArrayList<>();
+
+            for (StoredType el : collectionWorker.collection) {
+                dragoners.add(new DragonTable(el.getId(), el.getName(), el.getAge().toString(), String.valueOf(el.getWeight()), el.getType().toString(),
+                        el.getCharacter().toString(), el.getKiller().getName(), chekerNull(el.getKiller().getWeight().toString()),
+                        chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
+                        chekerNull(el.getKiller().getLocation().getName()), el.getOwner_id()));
+            }
+
+            if(dragoners.size() > size) {
+                dragoners.clear();
+                return true;
+            }
+            socket.close();
+        }catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     String chekerNull(String str) {
