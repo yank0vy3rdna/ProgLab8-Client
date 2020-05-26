@@ -18,10 +18,10 @@ public class Help_for_script {
 
     @FXML
     void initialize() {
-        help_id.setText("add {element} : добавить новый элемент в коллекцию\n"+
-                "update id {element} : обновить значение элемента коллекции, id которого равен заданному\n"+
-                "remove_by_id id : удалить элемент из коллекции по его id\n"+
-                "clear : очистить коллекцию\n"+
-                "save : сохранить коллекцию в файл\n");
+        help_id.setText("add {element} : add a new element to the collection\n"+
+                "update id {element} : update the value of a collection element whose id is equal to the specified\n"+
+                "remove_by_id id : delete an item from the collection by its id\n"+
+                "clear : clear the collection\n"+
+                "save: save the collection to a file\n");
     }
 }
