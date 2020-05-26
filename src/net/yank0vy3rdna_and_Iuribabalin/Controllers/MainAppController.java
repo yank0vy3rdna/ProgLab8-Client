@@ -123,8 +123,8 @@ public class MainAppController {
             }
 
         };
-        Timer timer = new Timer();
-        timer.schedule(task, 0L, 1000L);
+
+        Main.timer.schedule(task, 0L, 1000L);
 
         info.setText("      Добрый день," + Main.login);
         ObservableList<String> langs = FXCollections.observableArrayList("Info", "Clear", "Save",
@@ -195,8 +195,6 @@ public class MainAppController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root, Anime.WINDOW_X, Anime.WINDOW_Y));
             stage.showAndWait();
-            Anime anime = loader.getController();
-            anime.onShow();
         });
 
         table_dragon.setOnMouseClicked(event -> {
@@ -249,7 +247,7 @@ public class MainAppController {
                 oos.writeUTF(Arrays.toString(outBytes));
                 oos.flush();
 
-                timer.cancel();
+                Main.timer.cancel();
 
                 out_button.getScene().getWindow().hide();
 

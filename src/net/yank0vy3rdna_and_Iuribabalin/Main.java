@@ -13,12 +13,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Set;
+import java.util.Timer;
 
 public class Main extends Application {
     public static boolean deleteFlag = false;
     public static MainAppController mainAppController;
     public static String login;
     public static byte[] pass;
+    public static Timer timer  = new Timer();;
     public static long sessionID;
     public static long owner_id;
     public static Dragon dragon;
