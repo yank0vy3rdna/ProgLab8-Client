@@ -1,10 +1,15 @@
 package net.yank0vy3rdna_and_Iuribabalin.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import net.yank0vy3rdna_and_Iuribabalin.Dragon;
 import net.yank0vy3rdna_and_Iuribabalin.Main;
@@ -51,5 +56,41 @@ public class Anime {
             }
         };
         Main.timer.schedule(task, 1000L, 100L);
+        canvas.setOnMouseClicked(e -> {
+            double mouse_x = e.getX();
+            double mouse_y = e.getY();
+            for(StoredType dragon : Main.collectionWorker.collection){
+                int color_owner_id = (int)(dragon.getOwner_id() % 7);
+                int x = dragon.getCoordinates().getX().intValue();
+                int y = (int)dragon.getCoordinates().getY();
+                int size = (int)(dragon.getWeight()/2);
+                double offset = System.currentTimeMillis() / 300.;
+
+                if(mouse_x > x && mouse_x < x + size && mouse_y > y +Math.sin(offset)*20&& mouse_y < y +Math.sin(offset)*20+size){
+
+                    if (dragon.getOwner_id() == Main.owner_id) {
+                        Main.dragon1 = (Dragon) Main.collectionWorker.get_by_id(dragon.getId());
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource("DragonUpdate.fxml"));
+
+                        try {
+                            loader.load();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        Parent root = loader.getRoot();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.showAndWait();
+                    }else{
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Auth error");
+                        alert.setHeaderText("Auth error");
+                        alert.setContentText("Access error");
+                        alert.showAndWait().ifPresent(rs -> {});
+                    }
+                }
+            }
+        });
     }
 }
