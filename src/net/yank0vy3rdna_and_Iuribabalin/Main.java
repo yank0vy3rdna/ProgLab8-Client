@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import net.yank0vy3rdna_and_Iuribabalin.Controllers.Controller;
 import net.yank0vy3rdna_and_Iuribabalin.Controllers.MainAppController;
 
 import java.io.Serializable;
@@ -16,6 +18,7 @@ import java.util.*;
 public class Main extends Application {
 
     public static ResourceBundle resourceBundle;
+    public static Controller loginController;
     public static boolean deleteFlag = false;
     public static boolean updateFlag = false;
     public static MainAppController mainAppController;

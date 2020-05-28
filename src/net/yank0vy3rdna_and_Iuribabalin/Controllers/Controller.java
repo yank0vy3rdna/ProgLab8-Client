@@ -35,65 +35,71 @@ public class Controller {
     @FXML
     private TextField log_id;
 
+    public void onclicklog() {
+
+        Client client = new Client();
+        FXMLLoader loader = new FXMLLoader();
+
+        if (client.chekSqlIn(log_id.getText()) && client.chekSqlIn(pass_id.getText())) {
+            try {
+                if (client.authorization(log_id.getText(), pass_id.getText(), new OutputCommand())) {
+                    log_button.getScene().getWindow().hide();
+                    loader.setLocation(getClass().getResource("MainApp.fxml"));
+                    Parent root;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("MainApp.fxml"), Main.resourceBundle);
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.showAndWait();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Auth error");
+                    alert.setContentText("Auth failed");
+                    alert.showAndWait().ifPresent(rs -> {
+                    });
+                }
+            } catch (NoSuchAlgorithmException | IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Auth error");
+                alert.setHeaderText("Auth error");
+                alert.setContentText("Auth problem: " + e.getLocalizedMessage());
+                alert.showAndWait().ifPresent(rs -> {
+                });
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Auth error");
+            alert.setHeaderText("Auth error");
+            alert.setContentText("Auth problem: bad text");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+        }
+    }
+
     @FXML
     void initialize() {
-       log_button.setOnAction(event -> {
+        Main.loginController = this;
+        log_button.setOnAction(event -> onclicklog());
 
-           Client client = new Client();
-           FXMLLoader loader = new FXMLLoader();
+        reg_button.setOnAction(event -> {
 
-           if(client.chekSqlIn(log_id.getText()) && client.chekSqlIn(pass_id.getText())) {
-               try {
-                   if(client.authorization(log_id.getText(), pass_id.getText(),new OutputCommand())){
-                       log_button.getScene().getWindow().hide();
-                       loader.setLocation(getClass().getResource("MainApp.fxml"));
-                       Parent root;
-                       try {
-                           root = FXMLLoader.load(getClass().getResource("MainApp.fxml"), Main.resourceBundle);
-                           Stage stage = new Stage();
-                           stage.setScene(new Scene(root));
-                           stage.showAndWait();
-                       } catch (IOException e) {
-                           e.printStackTrace();
-                       }
-                   }else{
-                       Alert alert = new Alert(Alert.AlertType.ERROR);
-                       alert.setTitle("Error");
-                       alert.setHeaderText("Auth error");
-                       alert.setContentText("Auth failed");
-                       alert.showAndWait().ifPresent(rs -> {});
-                   }
-               } catch (NoSuchAlgorithmException | IOException e) {
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                   alert.setTitle("Auth error");
-                   alert.setHeaderText("Auth error");
-                   alert.setContentText("Auth problem: "+e.getLocalizedMessage());
-                   alert.showAndWait().ifPresent(rs -> {});
-               }
-           }else {
-               Alert alert = new Alert(Alert.AlertType.ERROR);
-               alert.setTitle("Auth error");
-               alert.setHeaderText("Auth error");
-               alert.setContentText("Auth problem: bad text");
-               alert.showAndWait().ifPresent(rs -> {});
-           }
-       });
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("reg.fxml"));
 
-       reg_button.setOnAction(event->{
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-           FXMLLoader loader = new FXMLLoader();
-           loader.setLocation(getClass().getResource("reg.fxml"));
-
-           try {
-               loader.load();
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-
-           Parent root = loader.getRoot();
-           Stage stage = new Stage();
-           stage.setScene(new Scene(root));
-           stage.showAndWait();
-       });
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        });
     }
 }

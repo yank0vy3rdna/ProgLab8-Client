@@ -149,94 +149,13 @@ public class MainAppController {
                     Main.resourceBundle = ResourceBundle.getBundle("resources/locals_spanish", Locale.forLanguageTag("ru"));
                     break;
             }
+            Scene scene = anima.getScene();
+            try {
+                scene.setRoot(FXMLLoader.load(getClass().getResource("MainApp.fxml"), Main.resourceBundle));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         });
-/*
-        translate.setOnAction(event->{
-            Main.lan = lang.getValue();
-            /*
-            if(lang.getValue().equals("Русский")){
-                info.setText("      Добрый день," + Main.login);
-                button_do.setText("Исполнить");
-                Add_dragon.setText("Добавить дракона");
-                help.setText("Все комманды");
-                anima.setText("Анимация");
-                out_button.setText("Выход");
-                labl_lang.setText("Выберети язык");
-                translate.setText("перевести");
-                lable_comm.setText("Выберети команду и нажмине кнопку выполнить");
-                name_drag.setText("Имя");
-                age_drag.setText("Возраст");
-                weight_drag.setText("Вес");
-                type_drag.setText("Тип");
-                character_drag.setText("Характер");
-                name_killer.setText("Имя убийцы");
-                weight_killer.setText("Вес убийцы");
-                height_killer.setText("Высота убийцы");
-                location_name.setText("Имя локации");
-            }
-            if(lang.getValue().equals("Беларускі")){
-                info.setText("      Добры дзень," + Main.login);
-                button_do.setText("Выканаць");
-                Add_dragon.setText ("Дадаць дракона");
-                help.setText ("Усе Коммандо");
-                anima.setText ("Анімацыя");
-                out_button.setText ("Выхад");
-                labl_lang.setText ("абярэ мова");
-                translate.setText ("перавесці");
-                lable_comm.setText ("абярэ каманду і нажмине кнопку выканаць");
-                name_drag.setText ("Імя");
-                age_drag.setText ("Узрост");
-                weight_drag.setText ("Вага");
-                type_drag.setText ("Тып");
-                character_drag.setText ("Характар");
-                name_killer.setText ("Імя забойцы");
-                weight_killer.setText ("Вага забойцы");
-                height_killer.setText ("Вышыня забойцы");
-                location_name.setText ("Імя лакацыі");
-
-            }
-            if(lang.getValue().equals("Hrvatski")){
-                info.setText("      Dobar dan," + Main.login);
-                button_do.setText("Izvršiti");
-                Add_dragon.setText ("Dodaj zmaja");
-                help.setText ("Sve naredbe");
-                anima.setText ("Animacija");
-                out_button.setText ("Izlaz");
-                labl_lang.setText ("Odaberite svoj jezik");
-                translate.setText ("prevesti");
-                lable_comm.setText ("Odaberite naredbu i pritisnite gumb za izvršavanje");
-                name_drag.setText ("Ime");
-                age_drag.setText ("Dob");
-                weight_drag.setText ("Težina");
-                type_drag.setText ("Vrsta");
-                character_drag.setText("znak");
-                name_killer.setText ("Ime ubojice");
-                weight_killer.setText ("Ubojica težine");
-                height_killer.setText ("Visina ubojice");
-                location_name.setText ("Naziv lokacije");
-            }
-            if(lang.getValue().equals("Español")){
-                info.setText("      Buenas tardes," + Main.login);
-                button_do.setText("Ejecutar");
-                Add_dragon.setText ("Agregar dragón");
-                help.setText ("Todos los comandos");
-                anima.setText ("Animación");
-                out_button.setText ("Salir");
-                labl_lang.setText ("Elige tu idioma");
-                translate.setText ("traducir");
-                lable_comm.setText ("Elija un comando y presione el botón de ejecución");
-                name_drag.setText ("Nombre");
-                age_drag.setText ("Edad");
-                weight_drag.setText ("Peso");
-                type_drag.setText ("Tipo");
-                character_drag.setText ("Carácter");
-                name_killer.setText ("Nombre del asesino");
-                weight_killer.setText ("Asesino de peso");
-                height_killer.setText ("Altura del asesino");
-                location_name.setText ("Nombre de ubicación");
-            }
-        });*/
-
         anima.setOnAction(e -> {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("anime.fxml"));
@@ -532,8 +451,6 @@ public class MainAppController {
                         chekerNull(String.valueOf(el.getKiller().getHeight())), chekerNull(String.valueOf(el.getKiller().getBirthday())),
                         chekerNull(el.getKiller().getLocation().getName()), el.getOwner_id()));
             }
-
-            System.out.println(size + " " + dragoners.size());
 
             if(dragoners.size() > size) {
                 dragoners.clear();
